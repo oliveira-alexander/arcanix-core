@@ -20,6 +20,6 @@ public class PessoaController {
 
     @PostMapping
     public Pessoa create(@RequestBody CreatePessoaDTO dto){
-        return mapper.createToResponse(dto);
+        return mapper.createToEntity(dto);
     }
 }

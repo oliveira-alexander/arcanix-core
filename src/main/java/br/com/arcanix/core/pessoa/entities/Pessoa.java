@@ -1,5 +1,6 @@
 package br.com.arcanix.core.pessoa.entities;
 
+import br.com.arcanix.core.pessoa.entities.enums.TipoParceiro;
 import br.com.arcanix.core.pessoa.entities.enums.TipoPessoa;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,10 +24,14 @@ public class Pessoa {
     private String cpf;
     private String cnpj;
 
+    @Enumerated
     private TipoPessoa tipoPessoa;
 
     @OneToMany(mappedBy = "pessoa")
     private List<Telefone> telefones;
+
+    @Enumerated
+    private List<TipoParceiro> tipoParceiro;
 
 
 
