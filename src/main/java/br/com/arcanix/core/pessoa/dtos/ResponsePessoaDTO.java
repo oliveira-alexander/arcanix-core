@@ -7,12 +7,12 @@ import br.com.arcanix.core.pessoa.entities.enums.TipoPessoa;
 import java.util.List;
 import java.util.UUID;
 
-public record ResponsePessoaDTO(UUID id,
+public record ResponsePessoaDTO(long id,
                                 String razaoSocial,
                                 String nomeFantasia,
                                 String cpf,
                                 String cnpj,
                                 TipoPessoa tipoPessoa,
-                                List<Telefone> telefones,
+                                List<ResponseTelefoneDTO> telefones,
                                 List<TipoParceiro> tipoParceiro) {
 }

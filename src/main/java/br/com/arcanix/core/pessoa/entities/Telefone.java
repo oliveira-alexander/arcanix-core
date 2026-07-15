@@ -18,9 +18,14 @@ public class Telefone {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
+    @Enumerated(EnumType.STRING)
+    @Column
     private TipoTelefone tipoTelefone;
-    private String telefone;
+
+    @Column(length = 20)
+    private String numero;
 }
