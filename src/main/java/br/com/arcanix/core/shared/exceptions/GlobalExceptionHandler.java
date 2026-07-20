@@ -1,12 +1,17 @@
 package br.com.arcanix.core.shared.exceptions;
 
 import br.com.arcanix.core.shared.exceptions.pessoa.PessoaNotFoundException;
+import br.com.arcanix.core.shared.exceptions.validation.FieldErrorResponse;
+import br.com.arcanix.core.shared.exceptions.validation.ValidationErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -19,5 +24,26 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(exception);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ValidationErrorResponse> validationErrorHandle(MethodArgumentNotValidException ex)
+    {
+        List<FieldErrorResponse> errorsList = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(error -> new FieldErrorResponse(error.getField(),
+                        error.getDefaultMessage()))
+                .toList();
+
+            ValidationErrorResponse response = new ValidationErrorResponse(
+                    LocalDateTime.now(),
+                    HttpStatus.BAD_REQUEST.value(),
+                    "Erro de Validação",
+                    errorsList
+            );
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(response);
     }
 }
