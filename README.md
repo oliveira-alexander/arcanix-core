@@ -100,6 +100,14 @@ Retorna a descrição amigável à aplicação que consome a api.
 <img width="323" height="82" alt="image" src="https://github.com/user-attachments/assets/3633d3cd-d600-41b1-926d-33c131dce6ba" />
 <br>
 
+<br>
+
+### Validações dos campos
+As validações dos campos de cadastros e alterações tem seu próprio layout, que responde com clareza quais campos e qual a validação que não passou:
+
+<img width="484" height="336" alt="image" src="https://github.com/user-attachments/assets/0aa2b192-05d3-4447-ac15-9ec1fa20433a" />
+
+
 # ▶️ Como executar
 
 ## Clonar o Repositório:
