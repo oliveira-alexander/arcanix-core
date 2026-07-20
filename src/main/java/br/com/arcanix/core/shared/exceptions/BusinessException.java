@@ -1,4 +1,4 @@
-package br.com.arcanix.core.shared.exception;
+package br.com.arcanix.core.shared.exceptions;
 
 public class BusinessException extends RuntimeException {
     public BusinessException(String message) {
