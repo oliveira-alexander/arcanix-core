@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(PessoaNotFoundException.class)
     public ResponseEntity<ExceptionResponse> pessoaNotFoundHandle(PessoaNotFoundException ex){
         ExceptionResponse exception = new ExceptionResponse(LocalDateTime.now(),
-                HttpStatus.NOT_FOUND,
+                HttpStatus.NOT_FOUND.value(),
                 ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
