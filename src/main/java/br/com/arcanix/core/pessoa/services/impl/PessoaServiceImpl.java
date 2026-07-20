@@ -9,12 +9,11 @@ import br.com.arcanix.core.pessoa.entities.Telefone;
 import br.com.arcanix.core.pessoa.mapper.PessoaMapper;
 import br.com.arcanix.core.pessoa.repository.PessoaRepository;
 import br.com.arcanix.core.pessoa.services.PessoaService;
-import br.com.arcanix.core.shared.exception.BusinessException;
+import br.com.arcanix.core.shared.exceptions.pessoa.PessoaNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public ResponsePessoaDTO update(Long id, UpdatePessoaDTO dto) {
         Pessoa pessoa = repository.findById(id)
-                .orElseThrow(() -> new BusinessException("Pessoa não encontrada!"));
+                .orElseThrow(() -> new PessoaNotFoundException("Pessoa não encontrada!"));
 
         mapper.updateToEntity(dto, pessoa);
 
@@ -53,7 +52,7 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public void delete(Long id) {
         Pessoa pessoa = repository.findById(id)
-                        .orElseThrow(() -> new BusinessException("Pessoa não encontrada!"));
+                        .orElseThrow(() -> new PessoaNotFoundException("Pessoa não encontrada!"));
 
         repository.delete(pessoa);
     }
@@ -79,7 +78,6 @@ public class PessoaServiceImpl implements PessoaService {
                     .build();
 
             pessoa.getTelefones().add(telefone);
-
         });
     }
 }
