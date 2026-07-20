@@ -83,6 +83,23 @@ O projeto possui testes unitários utilizando:
 
 Os testes contemplam a camada de serviço, isolando dependências através de mocks de repositório e mapper.
 
+# ⚠️ Tratamento de Exceções
+Através da tecnica de centralização da tratativa de exceções (GlobalExceptionHandler) garante respostas diretas e amigáveis para quem consome a API.
+
+O padrão de respostas engloba:
+
+### timestamp
+Retorna o momento atual do erro com base no servidor.
+
+### status
+Retorna o código de erro com base no HttpStatus
+
+### message
+Retorna a descrição amigável à aplicação que consome a api.
+
+<img width="323" height="82" alt="image" src="https://github.com/user-attachments/assets/3633d3cd-d600-41b1-926d-33c131dce6ba" />
+<br>
+
 # ▶️ Como executar
 
 ## Clonar o Repositório:
