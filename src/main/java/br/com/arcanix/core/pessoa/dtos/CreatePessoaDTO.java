@@ -4,6 +4,7 @@ import br.com.arcanix.core.pessoa.entities.Telefone;
 import br.com.arcanix.core.pessoa.entities.enums.TipoParceiro;
 import br.com.arcanix.core.pessoa.entities.enums.TipoPessoa;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -23,7 +24,7 @@ public record CreatePessoaDTO(@NotNull
                                 String cpf,
                               @Size(min = 16, max = 16, message = "O tamanho do CNPJ é de 16 caracteres!")
                                 String cnpj,
-                              @NotNull
+                              @NotNull (message = "Informe um Tipo de Pessoa válido!")
                                 TipoPessoa tipoPessoa,
                                 List<CreateTelefoneDTO> telefones,
                               @NotNull
