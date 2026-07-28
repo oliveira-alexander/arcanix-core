@@ -75,6 +75,23 @@ Além disso o uso das injeções de dependência do Spring Boot aliados ao uso d
 * Mapper (MapStruct)
 * Testes unitários
 
+## 🏷️ Categoria de Produto
+* Cadastro
+* Atualização
+* Exclusão
+* Consulta por todos os registros
+* DTOs
+* Mapper (MapStruct)
+* Testes unitários
+
+## 📦 Produto
+* Cadastro
+* Atualização
+* Exclusão
+* Consulta por todos os registros
+* DTOs
+* Mapper (MapStruct)
+
 # 🧪 Testes
 O projeto possui testes unitários utilizando:
 
