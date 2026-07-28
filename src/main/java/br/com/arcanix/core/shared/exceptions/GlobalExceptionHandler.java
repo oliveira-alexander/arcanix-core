@@ -1,5 +1,7 @@
 package br.com.arcanix.core.shared.exceptions;
 
+import br.com.arcanix.core.shared.exceptions.categoriaProduto.CategoriaProdutoAlreadyExistsException;
+import br.com.arcanix.core.shared.exceptions.categoriaProduto.CategoriaProdutoNotFoundException;
 import br.com.arcanix.core.shared.exceptions.pessoa.PessoaNotFoundException;
 import br.com.arcanix.core.shared.exceptions.validation.FieldErrorResponse;
 import br.com.arcanix.core.shared.exceptions.validation.ValidationErrorResponse;
@@ -54,6 +56,26 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST.value(),
                 "Erro na leitura do JSON",
                 null);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }
+
+    @ExceptionHandler(CategoriaProdutoNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> categoriaProdutoNotFoundHandle(CategoriaProdutoNotFoundException ex) {
+        ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(response);
+    }
+
+    @ExceptionHandler(CategoriaProdutoAlreadyExistsException.class)
+    public ResponseEntity<ExceptionResponse> categoriaProdutoAlreadyExistsHandle(CategoriaProdutoAlreadyExistsException ex){
+        ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(response);
