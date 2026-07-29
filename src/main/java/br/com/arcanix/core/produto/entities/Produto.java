@@ -32,4 +32,13 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "fornecedor_id")
     private Pessoa fornecedor;
+
+    @Override
+    public boolean equals(Object obj){
+        Produto comparando = (Produto) obj;
+
+        return (this.id == comparando.getId()) &&
+               (this.descricao.equals(comparando.getDescricao())) &&
+               (this.categoria.getId() == comparando.getCategoria().getId());
+    }
 }
