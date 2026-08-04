@@ -4,6 +4,7 @@ import br.com.arcanix.core.pessoa.entities.enums.TipoParceiro;
 import br.com.arcanix.core.pessoa.entities.enums.TipoPessoa;
 import jakarta.persistence.*;
 import lombok.*;
+import org.mapstruct.AnnotateWith;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,7 @@ import java.util.Objects;
 @Builder
 public class Pessoa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(length = 100,
@@ -42,7 +43,10 @@ public class Pessoa {
                orphanRemoval = true)
     private List<Telefone> telefones;
 
-    @Enumerated
+    @ElementCollection
+    @CollectionTable(name = "pessoa_tipo_parceiro")
+    @Column(name = "tipo_parceiro")
+    @Enumerated(EnumType.STRING)
     private List<TipoParceiro> tipoParceiro;
 
     @Override
