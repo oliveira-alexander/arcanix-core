@@ -19,6 +19,7 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 50)
     private String descricao;
 
     private BigDecimal custoUnitario;
@@ -32,4 +33,13 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "fornecedor_id")
     private Pessoa fornecedor;
+
+    @Override
+    public boolean equals(Object obj){
+        Produto comparando = (Produto) obj;
+
+        return (this.id == comparando.getId()) &&
+               (this.descricao.equals(comparando.getDescricao())) &&
+               (this.categoria.getId() == comparando.getCategoria().getId());
+    }
 }
