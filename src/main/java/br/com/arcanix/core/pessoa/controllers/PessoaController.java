@@ -6,6 +6,7 @@ import br.com.arcanix.core.pessoa.dtos.UpdatePessoaDTO;
 import br.com.arcanix.core.pessoa.entities.Pessoa;
 import br.com.arcanix.core.pessoa.mapper.PessoaMapper;
 import br.com.arcanix.core.pessoa.services.PessoaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("api/v1/pessoas")
 public class PessoaController {
