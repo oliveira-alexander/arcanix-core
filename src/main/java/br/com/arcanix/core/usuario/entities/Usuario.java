@@ -25,8 +25,5 @@ public class Usuario {
 
     private boolean active;
 
-    @OneToOne
-    @JoinColumn(name = "pessoa_id",
-        referencedColumnName = "id")
-    private Pessoa pessoa;
+    private Long pessoaId;
 }

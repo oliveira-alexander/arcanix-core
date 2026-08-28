@@ -30,7 +30,7 @@ public class Produto {
     @JoinColumn(name = "categoria_id")
     CategoriaProduto categoria;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fornecedor_id")
     private Pessoa fornecedor;
 

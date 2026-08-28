@@ -25,14 +25,11 @@ public class UsuarioServiceImpl
     public String create(CreateUsuarioDTO dto) {
         Usuario usuario = mapper.createToEntity(dto);
 
-        Pessoa pessoa = pessoaRepository.findById(dto.pessoaId())
-                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
-
         String encodedPassword = passwordEncoder.encode(dto.password());
 
         usuario.setActive(true);
         usuario.setPassword(encodedPassword);
-        usuario.setPessoa(pessoa);
+        usuario.setPessoaId(-1L);
 
         usuarioRepository.save(usuario);
 
