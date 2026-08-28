@@ -4,6 +4,7 @@ import br.com.arcanix.core.security.filters.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +35,12 @@ public class SecurityConfig {
                         .permitAll()
 
                         .requestMatchers("/api/v1/auth/**")
+                        .permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/api/v1/usuarios")
+                        .permitAll()
+
+                        .requestMatchers("/h2-console", "/h2-console/**")
                         .permitAll()
 
                         .anyRequest()
