@@ -26,14 +26,4 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(authService.login(dto));
     }
-
-    @PostMapping("/key")
-    public ResponseEntity<String> key(){
-        SecretKey key = Jwts.SIG.HS256.key().build();
-
-        String secret = Encoders.BASE64.encode(key.getEncoded());
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(secret);
-    }
 }
