@@ -1,0 +1,46 @@
+services:
+  arcanix-core-api:
+    build: .
+    image: arcanix-core:1.0
+    ports:
+      - "3001:3001"
+    environment:
+      PROFILE: "prod"
+      DB_URL: "jdbc:postgresql://arcanix-core-db:5432/arcanix-core"
+      DB_USERNAME: "arcanix"
+      DB_PASSWORD: "123456"
+      JWT_SECRET: "xa9B85RVg2iUi/PpCMiKZaKsNt1m4Pc88MxgD6sFG6M="
+    networks:
+      - arcanix-network
+    depends_on:
+      arcanix-core-db:
+        condition: service_healthy
+
+  arcanix-core-db: 
+    image: postgres:18
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "arcanix-core"
+      POSTGRES_USER: "arcanix"
+      POSTGRES_PASSWORD: "123456"
+    networks:
+      - arcanix-network
+    volumes:
+      - arcanix-core-db-data:/var/lib/postgresql
+
+    healthcheck:
+      test: ["CMD_SHELL", "pg_isready -U arcanix -d arcanix-core"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  arcanix-network
+
+volumes:
+  arcanix-core-db-data
+
+
+
+
