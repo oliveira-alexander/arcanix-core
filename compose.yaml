@@ -30,16 +30,16 @@ services:
       - arcanix-core-db-data:/var/lib/postgresql
 
     healthcheck:
-      test: ["CMD_SHELL", "pg_isready -U arcanix -d arcanix-core"]
+      test: ["CMD-SHELL", "pg_isready -U arcanix -d arcanix-core"]
       interval: 10s
       timeout: 5s
       retries: 5
 
 networks:
-  arcanix-network
+  arcanix-network:
 
 volumes:
-  arcanix-core-db-data
+  arcanix-core-db-data:
 
 
 
